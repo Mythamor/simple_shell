@@ -106,10 +106,14 @@ int main(void)
 {
 	char cmd[MAX_COMMAND_LENGTH];
 	char **args = malloc((MAX_ARGS + 1) * sizeof(char *));
+	int interactive = isatty(STDIN_FILENO);
 
 	while (1)
 {
-	displayPrompt();
+	if (interactive)
+{
+		displayPrompt();
+}
 		if (my_fgets(cmd, MAX_COMMAND_LENGTH, stdin) == NULL)
 {
 	/* EOF condition (Ctrl+D) */
