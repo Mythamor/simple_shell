@@ -28,9 +28,11 @@ void displayPrompt(void);
 char **parseCmd(char *cmd);
 void exeCmd(char **args);
 void execmd(char **argv);
-char *strcpy(char *dest, const char *src);
-char *strtok(char *str, const char *delim);
-ssize_t getline(char **lineptr, size_t *n, FILE *stream);
-
+int _strcmp(char *s1, char *s2);
+int WIFEXITED_wrapper(int status);
+int WEXITSTATUS_wrapper(int status);
+char *my_fgets(char *str, int n, FILE *stream);
+int my_execvp(char *file, char *const argv[]);
+int my_feof(FILE *stream);
 
 #endif
