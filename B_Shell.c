@@ -19,14 +19,13 @@ void displayPrompt(void)
 char **parseCmd(char *cmd)
 {
 	/* Maximum of two arguments allowed */
-	int max_args = 10;
-	char **args = malloc((max_args + 1) * sizeof(char *));
+	char **args = malloc((MAX_ARGS + 1) * sizeof(char *));
 	int i = 0;
 
 	/* tokenize the string by space or newline */
 	char *arg = strtok(cmd, " \n");
 
-	while (arg != NULL && i < max_args)
+	while (arg != NULL && i < MAX_ARGS)
 {
 	args[i] = arg;
 	arg = strtok(NULL, " \n");
@@ -106,22 +105,22 @@ write(STDOUT_FILENO, "\"\n: not found:", 14);
 int main(void)
 {
 	char cmd[MAX_COMMAND_LENGTH];
-	char **args;
+	char **args = malloc((MAX_ARGS + 1) * sizeof(char *));
 
 	while (1)
 {
 	displayPrompt();
-	if (my_fgets(cmd, MAX_COMMAND_LENGTH, stdin) == NULL)
+		if (my_fgets(cmd, MAX_COMMAND_LENGTH, stdin) == NULL)
 {
 	/* EOF condition (Ctrl+D) */
-	if (my_feof(stdin))
+			if (my_feof(stdin))
 {
-		exit(0);
+				exit(0);
 }
-	else
+			else
 {
-		perror("my_fgets");
-		exit(1);
+				perror("my_fgets");
+				exit(1);
 }
 }
 
@@ -129,8 +128,13 @@ int main(void)
 	args = parseCmd(cmd);
 	exeCmd(args);
 
+	/* Reset args. */
+
+	memset(args, 0, (MAX_ARGS + 1) * sizeof(char *));
+
+}
 	/* free allocated memory */
 	free(args);
-}
+
 	return (0);
 }

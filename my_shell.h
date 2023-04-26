@@ -11,18 +11,7 @@
 #include <sys/wait.h>
 
 #define MAX_COMMAND_LENGTH 100
-
-/**
- * struct list - linked list for environment variables
- * @var: holds string for environ variable
- * @next: points to the next node
- */
-
-typedef struct list
-{
-	char *var;
-	struct list *next;
-} list_t;
+#define MAX_ARGS 100 
 
 void displayPrompt(void);
 char **parseCmd(char *cmd);
@@ -36,5 +25,6 @@ char *my_fgets(char *str, int n, FILE *stream);
 int my_execvp(char *file, char *const argv[]);
 int my_feof(FILE *stream);
 size_t my_strlen(const char *s);
+
 
 #endif
