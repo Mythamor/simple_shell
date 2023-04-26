@@ -11,7 +11,7 @@
 #include <sys/wait.h>
 
 #define MAX_COMMAND_LENGTH 100
-#define MAX_ARGS 100 
+#define MAX_ARGS 100
 
 void displayPrompt(void);
 char **parseCmd(char *cmd);
