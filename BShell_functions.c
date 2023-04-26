@@ -60,3 +60,20 @@ p++;
 return ((size_t)(p - s));
 }
 
+/**
+ * freeArgs - frees memory
+ * @args: argument vectors
+ */
+
+void freeArgs(char **args)
+{
+int i;
+
+for (i = 0; args[i] != NULL; i++)
+{
+free(args[i]);
+}
+free(args);
+args = NULL;
+}
+
