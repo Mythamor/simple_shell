@@ -87,7 +87,7 @@ reportError(args[0]);
 
 /**
  * reportError - reports error from a given command
- * @args:the command
+ * @command:the command
  */
 
 void reportError(char *command)
