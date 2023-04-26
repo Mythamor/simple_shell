@@ -42,3 +42,21 @@ int my_feof(FILE *stream)
 return (feof(stream));
 }
 
+/**
+ * my_strlen - gets the length of a string
+ * @s: the string
+ * Return: length of string
+ */
+
+size_t my_strlen(const char *s)
+{
+const char *p = s;
+
+while (*p != '\0')
+{
+p++;
+}
+
+return ((size_t)(p - s));
+}
+

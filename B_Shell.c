@@ -7,7 +7,7 @@
 
 void displayPrompt(void)
 {
-	printf("#B_Shell > ");
+	write(STDOUT_FILENO, "#B_Shell > ", 11);
 }
 
 /**
@@ -62,13 +62,14 @@ if (_strcmp(args[0], "env") == 0) /* if user wants to see the environ var*/
 char **env_ptr = __environ;
 while (*env_ptr)
 {
-printf("%s\n", *env_ptr);
+write(STDOUT_FILENO, *env_ptr, my_strlen(*env_ptr));
+write(STDOUT_FILENO, "\n", 1);
 env_ptr++;
 }
 }
 else if (my_execvp(args[0], args) == -1)
 {
-perror("my_execvp");
+reportError(args[0]);
 exit(1);
 }
 }
@@ -79,9 +80,21 @@ waitpid(pid, &status, 0);
 
 if (WIFEXITED_wrapper(status) && WEXITSTATUS_wrapper(status) != 0)
 {
-printf("Error: \"%s\"\n: not found:", args[0]);
+reportError(args[0]);
 }
 }
+}
+
+/**
+ * reportError - reports error from a given command
+ * @args:the command
+ */
+
+void reportError(char *command)
+{
+write(STDOUT_FILENO, "Error: \"", 9);
+write(STDOUT_FILENO, command, my_strlen(command));
+write(STDOUT_FILENO, "\"\n: not found:", 14);
 }
 
 

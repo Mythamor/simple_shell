@@ -29,10 +29,12 @@ char **parseCmd(char *cmd);
 void exeCmd(char **args);
 void execmd(char **argv);
 int _strcmp(char *s1, char *s2);
+void reportError(char *command);
 int WIFEXITED_wrapper(int status);
 int WEXITSTATUS_wrapper(int status);
 char *my_fgets(char *str, int n, FILE *stream);
 int my_execvp(char *file, char *const argv[]);
 int my_feof(FILE *stream);
+size_t my_strlen(const char *s);
 
 #endif
